@@ -1,4 +1,4 @@
-package sport.diary.api;
+package sport.diary.api.login;
 
 import sport.diary.api.login.repository.LoginRepository;
 import sport.diary.api.login.repository.LoginRepositoryImpl;

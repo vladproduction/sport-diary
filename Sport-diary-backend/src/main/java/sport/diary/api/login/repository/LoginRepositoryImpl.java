@@ -1,8 +1,13 @@
 package sport.diary.api.login.repository;
 
-import java.sql.*;
+import sport.diary.api.common.repository.AbstractRepository;
 
-public class LoginRepositoryImpl implements LoginRepository {
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
+import java.util.Properties;
+
+public class LoginRepositoryImpl extends AbstractRepository implements LoginRepository {
     @Override
     public boolean isPresent(String login, String password) {
 
@@ -20,7 +25,5 @@ public class LoginRepositoryImpl implements LoginRepository {
     }
 
 
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sport-diary", "root", "11111111");
-    }
+
 }
