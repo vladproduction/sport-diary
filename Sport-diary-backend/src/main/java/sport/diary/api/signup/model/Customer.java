@@ -3,13 +3,13 @@ package sport.diary.api.signup.model;
 public class Customer {
 
     private String login;
-    private String pass;
     private String email;
+    private String pass;
 
-    public Customer(String login, String pass, String email) {
+    public Customer(String login, String email, String pass) {
         this.login = login;
-        this.pass = pass;
         this.email = email;
+        this.pass = pass;
     }
 
     public Customer() {

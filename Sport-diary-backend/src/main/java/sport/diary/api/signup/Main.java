@@ -10,7 +10,7 @@ import sport.diary.api.signup.validator.SignupValidatorImpl;
 
 public class Main {
     public static void main(String[] args) {
-        Customer customer = new Customer("log"+System.currentTimeMillis(),"pas","ema");
+        Customer customer = new Customer("log"+System.currentTimeMillis(),"log@com.com","pass0000");
         SignupValidator validator = new SignupValidatorImpl();
         SignupRepository repository = new SignupRepositoryImpl();
         SignupService service = new SignupServiceImpl(repository,validator);

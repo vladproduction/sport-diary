@@ -2,6 +2,8 @@ module com.example.sportdiaryfrontend {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.jfoenix;
+    requires java.desktop;
+    requires java.sql;
     requires Sport.diary.backend;
 
 

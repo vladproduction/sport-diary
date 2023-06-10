@@ -12,12 +12,12 @@ public class SignupValidatorImpl implements SignupValidator{
         if(isEmpty(login)){
             return false;
         }
-        String pass = customer.getPass();
-        if(isEmpty(pass)){
-            return false;
-        }
         String email = customer.getEmail();
         if(isEmpty(email)){
+            return false;
+        }
+        String pass = customer.getPass();
+        if(isEmpty(pass)){
             return false;
         }
         return true;

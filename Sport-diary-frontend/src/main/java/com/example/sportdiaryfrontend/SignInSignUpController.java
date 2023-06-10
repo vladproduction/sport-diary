@@ -1,9 +1,11 @@
 package com.example.sportdiaryfrontend;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -42,6 +44,12 @@ public class SignInSignUpController implements Initializable {
     private TextField emailField;
     @FXML
     private PasswordField passwordPassField;
+    @FXML
+    private Button BtnSignIn;
+    @FXML
+    private Button BtnRegister;
+    @FXML
+    private JFXButton BtnForgotPassword;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,9 +59,7 @@ public class SignInSignUpController implements Initializable {
         pane3.setStyle("-fx-background-image: url(\"/3.png\")");
         pane4.setStyle("-fx-background-image: url(\"/4.png\")");
 
-
         backgroundAnimation();
-
     }
 
     private void backgroundAnimation() {
@@ -103,23 +109,23 @@ public class SignInSignUpController implements Initializable {
         });
     }
 
-
-    public void onForgotPassBtnAction(ActionEvent event) {
+    public void onBtnSignInAction() {
+        System.out.println("onBtnSignInAction");
 
     }
 
-    public void onSignIpBtnAction(ActionEvent event) {
-        String userName = usernameField.getText();
-        String email = emailField.getText();
-        String password = passwordPassField.getText();
+    public void onBtnRegisterAction() {
+        System.out.println("onBtnRegisterAction");
+        Customer customer = new Customer(
+                usernameField.getText(),
+                emailField.getText(),
+                passwordPassField.getText());
+
+        service.register(customer);
+
     }
 
-    public void onRegisterBtnAction(ActionEvent event) {
-        String userName = usernameField.getText();
-        String email = emailField.getText();
-        String password = passwordPassField.getText();
-        Customer customer = new Customer(userName,password,email);
-        boolean isRegitered = service.register(customer);
-        System.out.println(isRegitered);
+    public void onBtnForgotPasswordAction() {
+        System.out.println("onBtnForgotPasswordAction");
     }
 }
