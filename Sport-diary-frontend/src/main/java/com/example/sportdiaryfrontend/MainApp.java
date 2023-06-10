@@ -16,7 +16,7 @@ public class MainApp extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("demo-slided-login.fxml"));
         Rectangle2D bounds = Screen.getPrimary().getBounds();
-        Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()*0.50, bounds.getHeight()*0.40);
+        Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()*0.50, bounds.getHeight()*0.45);
         stage.setScene(scene);
         stage.show();
     }

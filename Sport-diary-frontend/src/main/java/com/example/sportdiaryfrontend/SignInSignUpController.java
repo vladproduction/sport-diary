@@ -114,15 +114,15 @@ public class SignInSignUpController implements Initializable {
 
     }
 
-    public void onBtnRegisterAction() {
+    public void onBtnRegisterAction(ActionEvent event) {
+
         System.out.println("onBtnRegisterAction");
         Customer customer = new Customer(
                 usernameField.getText(),
                 emailField.getText(),
                 passwordPassField.getText());
-
-        service.register(customer);
-
+        boolean onFire = service.register(customer);
+        System.out.println(onFire);
     }
 
     public void onBtnForgotPasswordAction() {
