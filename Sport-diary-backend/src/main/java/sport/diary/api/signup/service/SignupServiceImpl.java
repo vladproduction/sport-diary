@@ -16,10 +16,16 @@ public class SignupServiceImpl implements SignupService{
     }
     @Override
     public boolean register(Customer customer) {
-        if(signupValidator.isValid(customer)){
-            signupRepository.create(customer);
-            return true;
+        try{
+            if(signupValidator.isValid(customer)){
+                signupRepository.create(customer);
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
         }
-        return false;
+
     }
 }

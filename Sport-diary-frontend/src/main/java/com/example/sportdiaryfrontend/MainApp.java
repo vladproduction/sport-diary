@@ -8,11 +8,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 
 public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
+        //System.setOut(new PrintStream(new File("outPS.txt")));
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("demo-slided-login.fxml"));
         Rectangle2D bounds = Screen.getPrimary().getBounds();

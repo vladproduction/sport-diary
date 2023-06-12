@@ -5,11 +5,17 @@ import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.util.Duration;
+import sport.diary.api.login.repository.LoginRepository;
+import sport.diary.api.login.repository.LoginRepositoryImpl;
+import sport.diary.api.login.service.LoginService;
+import sport.diary.api.login.service.LoginServiceImpl;
 import sport.diary.api.signup.model.Customer;
 import sport.diary.api.signup.repository.SignupRepository;
 import sport.diary.api.signup.repository.SignupRepositoryImpl;
@@ -26,6 +32,8 @@ public class SignInSignUpController implements Initializable {
     SignupValidator validator = new SignupValidatorImpl();
     SignupRepository repository = new SignupRepositoryImpl();
     SignupService service = new SignupServiceImpl(repository,validator);
+    LoginRepository loginRepository = new LoginRepositoryImpl();
+    LoginService loginService = new LoginServiceImpl(loginRepository);
 
     @FXML
     private Pane pane1;
@@ -110,7 +118,20 @@ public class SignInSignUpController implements Initializable {
     }
 
     public void onBtnSignInAction() {
-        System.out.println("onBtnSignInAction");
+        try {
+            System.out.println("onBtnSignInAction");
+            boolean isExist = loginService.isExist(usernameField.getText(),passwordPassField.getText());
+            System.out.println(isExist);
+            if(!isExist){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Login and Password incorrect");
+                alert.show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Utils.showErrorShortAlert(e);
+        }
+
 
     }
 
@@ -123,6 +144,13 @@ public class SignInSignUpController implements Initializable {
                 passwordPassField.getText());
         boolean onFire = service.register(customer);
         System.out.println(onFire);
+        if(!onFire){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.initModality(Modality.NONE);
+            alert.setContentText("Login already exist");
+            alert.show();
+        }
+
     }
 
     public void onBtnForgotPasswordAction() {
