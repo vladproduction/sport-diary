@@ -4,13 +4,18 @@ import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import sport.diary.api.login.repository.LoginRepository;
 import sport.diary.api.login.repository.LoginRepositoryImpl;
@@ -34,6 +39,7 @@ public class SignInSignUpController implements Initializable {
     SignupService service = new SignupServiceImpl(repository,validator);
     LoginRepository loginRepository = new LoginRepositoryImpl();
     LoginService loginService = new LoginServiceImpl(loginRepository);
+
 
     @FXML
     private Pane pane1;
@@ -126,6 +132,18 @@ public class SignInSignUpController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText("Login and Password incorrect");
                 alert.show();
+            }else{
+                Customer customer = new Customer(
+                        usernameField.getText(),
+                        emailField.getText(),
+                        passwordPassField.getText());
+                FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("home-page.fxml"));
+                Rectangle2D bounds = Screen.getPrimary().getBounds();
+
+                Utils.currentCustomer = customer;
+                Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()*0.50, bounds.getHeight()*0.45);
+                Utils.stage.setScene(scene);
+
             }
         }catch (Exception e){
             e.printStackTrace();
