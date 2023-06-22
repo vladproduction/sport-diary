@@ -8,27 +8,25 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportdiaryfrontend.HomePageController">
-   <center>
-      <ListView fx:id="workoutLW" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
    <left>
       <VBox prefHeight="236.0" prefWidth="120.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addWorkBTN" mnemonicParsing="false" onAction="#addWorkoutAction" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2177b1;" text="ADD WOROUT" textFill="WHITE">
+            <Button fx:id="addWorkoutBTN" mnemonicParsing="false" onAction="#addWorkoutAction" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2177b1;" text="ADD WORKOUT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2177b1;" text="UPDATE WORKOUT" textFill="WHITE">
+            <Button fx:id="updateWorkoutBTN" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateWorkoutAction" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2177b1;" text="UPDATE WORKOUT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="35.0" mnemonicParsing="false" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2177b1;" text="DELETE WORKUT" textFill="WHITE">
+            <Button fx:id="deleteWorkoutBTN" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" onAction="#deleteWorkoutAction" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2177b1;" text="DELETE WORKOUT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -39,17 +37,17 @@
    <right>
       <VBox prefHeight="236.0" prefWidth="120.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ff2121;" text="ADD EXERCISES" textFill="WHITE">
+            <Button fx:id="addExercisesBTN" mnemonicParsing="false" onAction="#addExercisesAction" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ff2121;" text="ADD EXERCISES" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ff2121;" text="UPDATE EXERCISES" textFill="WHITE">
+            <Button fx:id="updateExercisesBTN" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateExercisesAction" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ff2121;" text="UPDATE EXERCISES" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="35.0" mnemonicParsing="false" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ff2121;" text="DELETE EXERCISES" textFill="WHITE">
+            <Button fx:id="deleteExercisesBTN" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" onAction="#deleteExercisesAction" opacity="0.8" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #ff2121;" text="DELETE EXERCISES" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
@@ -74,7 +72,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #2177b1;" text="WORKOUT" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#workoutActive" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #2177b1;" text="WORKOUT" textFill="WHITE">
                <GridPane.margin>
                   <Insets left="230.0" />
                </GridPane.margin>
@@ -82,7 +80,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" style="-fx-background-color: #ff2121;" text="EXERCISES" textFill="WHITE" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#exerciseActive" prefHeight="25.0" prefWidth="137.0" style="-fx-background-color: #ff2121;" text="EXERCISES" textFill="WHITE" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="230.0" />
                </GridPane.margin>
@@ -93,4 +91,12 @@
          </children>
       </GridPane>
    </bottom>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="workoutLW" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="exercisesLW" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </StackPane>
+   </center>
 </BorderPane>

@@ -141,7 +141,7 @@ public class SignInSignUpController implements Initializable {
                 Rectangle2D bounds = Screen.getPrimary().getBounds();
 
                 Utils.currentCustomer = customer;
-                Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()*0.50, bounds.getHeight()*0.45);
+                Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()*0.50, bounds.getHeight()*0.55);
                 Utils.stage.setScene(scene);
 
             }
