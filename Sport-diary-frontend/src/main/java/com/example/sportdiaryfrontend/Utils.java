@@ -1,6 +1,8 @@
 package com.example.sportdiaryfrontend;
 
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import sport.diary.api.signup.model.Customer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -8,6 +10,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 public class Utils {
+
+    public static Stage stage;
+    public static Customer currentCustomer;
     public static void showError(Exception ex) {
         File file = new File("error.txt");
         try {

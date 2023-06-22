@@ -18,10 +18,11 @@ public class MainApp extends Application {
 
         //System.setOut(new PrintStream(new File("outPS.txt")));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("demo-slided-login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("register-login-page.fxml"));
         Rectangle2D bounds = Screen.getPrimary().getBounds();
-        Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()*0.50, bounds.getHeight()*0.45);
+        Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth()*0.50, bounds.getHeight()*0.50);
         stage.setScene(scene);
+        Utils.stage = stage;
         stage.show();
     }
 
