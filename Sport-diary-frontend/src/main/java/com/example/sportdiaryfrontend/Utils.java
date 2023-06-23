@@ -3,6 +3,7 @@ package com.example.sportdiaryfrontend;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import sport.diary.api.signup.model.Customer;
+import sport.diary.api.workout.model.Workout;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -13,6 +14,7 @@ public class Utils {
 
     public static Stage stage;
     public static Customer currentCustomer;
+    public static Workout currentWorkout;
     public static void showError(Exception ex) {
         File file = new File("error.txt");
         try {

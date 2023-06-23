@@ -1,9 +1,15 @@
 package com.example.sportdiaryfrontend;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import sport.diary.api.exercises.model.Exercise;
 import sport.diary.api.exercises.repository.ExerciseRepository;
 import sport.diary.api.exercises.repository.ExerciseRepositoryImpl;
@@ -45,6 +51,23 @@ public class HomePageController {
         List<Workout> workoutList = workoutRepository.readAll(Utils.currentCustomer);
         workoutLW.getItems().addAll(workoutList);
         switchState(true);
+        workoutLW.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    int selectedIndex = workoutLW.getSelectionModel().getSelectedIndex();
+                    List<Workout> workoutList = workoutLW.getItems();
+                    Workout selectedWorkout = workoutList.get(selectedIndex);
+                    Utils.currentWorkout = selectedWorkout;
+                    FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("workout-exercises-relations.fxml"));
+                    Rectangle2D bounds = Screen.getPrimary().getBounds();
+                    Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth() * 0.50, bounds.getHeight() * 0.55);
+                    Utils.stage.setScene(scene);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
     }
 
@@ -59,7 +82,7 @@ public class HomePageController {
             addWorkoutBTN.setVisible(true);
             updateWorkoutBTN.setVisible(true);
             deleteWorkoutBTN.setVisible(true);
-        }else {
+        } else {
             exercisesLW.setVisible(true);
             addExercisesBTN.setVisible(true);
             updateExercisesBTN.setVisible(true);
